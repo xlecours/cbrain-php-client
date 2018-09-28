@@ -20,12 +20,12 @@ To install the bindings via [Composer](http://getcomposer.org/), add the followi
 {
   "repositories": [
     {
-      "type": "git",
-      "url": "https://github.com/xlecours/cbrain-php-client.git"
+      "type": "vcs",
+      "url": "git@github.com:xlecours/cbrain-php-client.git"
     }
   ],
   "require": {
-    "xlecours/cbrain-php-client": "^1.0.0"
+    "xlecours/cbrain-php-client": "dev-master"
   }
 }
 ```
