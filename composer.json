@@ -1,6 +1,6 @@
 {
     "name": "xlecours/cbrain-php-client",
-    "description": "Swagger generated client for CBRAIN api schema v5.0.2",
+    "description": "Swagger generated client for CBRAIN api schema v5.1.0",
     "keywords": [
         "CBRAIN",
         "swagger",

@@ -4,17 +4,17 @@ All URIs are relative to *http://localhost:3001*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**usersGet**](UsersApi.md#usersGet) | **GET** /users | Returns all of the users in CBRAIN.
+[**usersGet**](UsersApi.md#usersGet) | **GET** /users | Returns all of the users in CBRAIN. Only available to admins.
 [**usersIdDelete**](UsersApi.md#usersIdDelete) | **DELETE** /users/{id} | Deletes a CBRAIN user
 [**usersIdGet**](UsersApi.md#usersIdGet) | **GET** /users/{id} | Returns information about a user
 [**usersIdPatch**](UsersApi.md#usersIdPatch) | **PATCH** /users/{id} | Update information about a user
-[**usersPost**](UsersApi.md#usersPost) | **POST** /users | Create a new user in CBRAIN.
+[**usersPost**](UsersApi.md#usersPost) | **POST** /users | Create a new user in CBRAIN. Only available to admins.
 
 
 # **usersGet**
 > \Swagger\Client\Model\User[] usersGet()
 
-Returns all of the users in CBRAIN.
+Returns all of the users in CBRAIN. Only available to admins.
 
 Returns all of the users registered in CBRAIN, as well as information on their permissions and group/site memberships.
 
@@ -57,7 +57,7 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -111,7 +111,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -166,13 +166,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **usersIdPatch**
-> \Swagger\Client\Model\User usersIdPatch($id, $user, $force_password_reset)
+> \Swagger\Client\Model\User usersIdPatch($id, $user_mod_req)
 
 Update information about a user
 
@@ -195,11 +195,10 @@ $apiInstance = new Swagger\Client\Api\UsersApi(
     $config
 );
 $id = 56; // int | ID of user to update
-$user = new \Swagger\Client\Model\User1(); // \Swagger\Client\Model\User1 | An object representing any parameter of the user that you would like to alter, only put ones that you would like to change.
-$force_password_reset = false; // bool | Boolean to force a password change
+$user_mod_req = new \Swagger\Client\Model\UserModReq(); // \Swagger\Client\Model\UserModReq | An object representing a request for a new User
 
 try {
-    $result = $apiInstance->usersIdPatch($id, $user, $force_password_reset);
+    $result = $apiInstance->usersIdPatch($id, $user_mod_req);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->usersIdPatch: ', $e->getMessage(), PHP_EOL;
@@ -212,8 +211,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| ID of user to update |
- **user** | [**\Swagger\Client\Model\User1**](../Model/User1.md)| An object representing any parameter of the user that you would like to alter, only put ones that you would like to change. |
- **force_password_reset** | **bool**| Boolean to force a password change | [optional] [default to false]
+ **user_mod_req** | [**\Swagger\Client\Model\UserModReq**](../Model/UserModReq.md)| An object representing a request for a new User |
 
 ### Return type
 
@@ -225,17 +223,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **usersPost**
-> \Swagger\Client\Model\User usersPost($user, $no_password_reset_needed)
+> \Swagger\Client\Model\User usersPost($user_mod_req)
 
-Create a new user in CBRAIN.
+Create a new user in CBRAIN. Only available to admins.
 
-Creates a new user in CBRAIN.
+Creates a new user in CBRAIN. Only admins can create new users.
 
 ### Example
 ```php
@@ -253,11 +251,10 @@ $apiInstance = new Swagger\Client\Api\UsersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$user = new \Swagger\Client\Model\User(); // \Swagger\Client\Model\User | An object representing a new User and the autenticity token.
-$no_password_reset_needed = 0; // int | Do you want to force the user to reset their password upon first login
+$user_mod_req = new \Swagger\Client\Model\UserModReq(); // \Swagger\Client\Model\UserModReq | An object representing a request for a new User
 
 try {
-    $result = $apiInstance->usersPost($user, $no_password_reset_needed);
+    $result = $apiInstance->usersPost($user_mod_req);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->usersPost: ', $e->getMessage(), PHP_EOL;
@@ -269,8 +266,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user** | [**\Swagger\Client\Model\User**](../Model/User.md)| An object representing a new User and the autenticity token. | [optional]
- **no_password_reset_needed** | **int**| Do you want to force the user to reset their password upon first login | [optional] [default to 0]
+ **user_mod_req** | [**\Swagger\Client\Model\UserModReq**](../Model/UserModReq.md)| An object representing a request for a new User |
 
 ### Return type
 
@@ -282,7 +278,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
+ - **Content-Type**: application/json, multipart/form-data
  - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
