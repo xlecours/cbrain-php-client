@@ -20,12 +20,12 @@ To install the bindings via [Composer](http://getcomposer.org/), add the followi
 {
   "repositories": [
     {
-      "type": "git",
-      "url": "https://github.com//.git"
+      "type": "vcs",
+      "url": "git@github.com:xlecours/cbrain-php-client.git"
     }
   ],
   "require": {
-    "/": "*@dev"
+    "xlecours/cbrain-php-client": "dev-master"
   }
 }
 ```
@@ -81,7 +81,7 @@ try {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://portal.cbrain.mcgill.ca*
+All URIs are relative to *http://localhost:3001*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
