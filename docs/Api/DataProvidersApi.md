@@ -1,6 +1,6 @@
 # Swagger\Client\DataProvidersApi
 
-All URIs are relative to *http://localhost:3001*
+All URIs are relative to *https://portal.cbrain.mcgill.ca*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**dataProvidersIdBrowseGet**](DataProvidersApi.md#dataProvidersIdBrowseGet) | **GET** /data_providers/{id}/browse | List the files on a Data Provider.
 [**dataProvidersIdDeletePost**](DataProvidersApi.md#dataProvidersIdDeletePost) | **POST** /data_providers/{id}/delete | Deletes unregistered files from a CBRAIN Data provider.
 [**dataProvidersIdGet**](DataProvidersApi.md#dataProvidersIdGet) | **GET** /data_providers/{id} | Get information on a particular Data Provider.
-[**dataProvidersIdIsAliveGet**](DataProvidersApi.md#dataProvidersIdIsAliveGet) | **GET** /data_providers/{id}/is_alive | Pings a Data Provider to check if it&#39;s running.
+[**dataProvidersIdIsAliveGet**](DataProvidersApi.md#dataProvidersIdIsAliveGet) | **GET** /data_providers/{id}/is_alive | Pings a Data Provider to check if it is running.
 [**dataProvidersIdRegisterPost**](DataProvidersApi.md#dataProvidersIdRegisterPost) | **POST** /data_providers/{id}/register | Registers a file as a Userfile in CBRAIN.
 [**dataProvidersIdUnregisterPost**](DataProvidersApi.md#dataProvidersIdUnregisterPost) | **POST** /data_providers/{id}/unregister | Unregisters files as Userfile in CBRAIN.
 
@@ -59,7 +59,7 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -114,13 +114,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **dataProvidersIdDeletePost**
-> dataProvidersIdDeletePost($id, $basenames, $authenticity_token, $as_user_id)
+> \Swagger\Client\Model\RegistrationInfo dataProvidersIdDeletePost($id, $multi_registration_mod_req)
 
 Deletes unregistered files from a CBRAIN Data provider.
 
@@ -143,12 +143,11 @@ $apiInstance = new Swagger\Client\Api\DataProvidersApi(
     $config
 );
 $id = 56; // int | The ID of the Data Provider to delete files from.
-$basenames = array("basenames_example"); // string[] | An array containing the filenames to delete.
-$authenticity_token = "authenticity_token_example"; // string | The token returned by /session/new
-$as_user_id = 56; // int | The ID of the user to delete files as.
+$multi_registration_mod_req = new \Swagger\Client\Model\MultiRegistrationModReq(); // \Swagger\Client\Model\MultiRegistrationModReq | Arrays containing the files to delete.
 
 try {
-    $apiInstance->dataProvidersIdDeletePost($id, $basenames, $authenticity_token, $as_user_id);
+    $result = $apiInstance->dataProvidersIdDeletePost($id, $multi_registration_mod_req);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DataProvidersApi->dataProvidersIdDeletePost: ', $e->getMessage(), PHP_EOL;
 }
@@ -160,13 +159,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| The ID of the Data Provider to delete files from. |
- **basenames** | [**string[]**](../Model/string.md)| An array containing the filenames to delete. |
- **authenticity_token** | **string**| The token returned by /session/new |
- **as_user_id** | **int**| The ID of the user to delete files as. | [optional]
+ **multi_registration_mod_req** | [**\Swagger\Client\Model\MultiRegistrationModReq**](../Model/MultiRegistrationModReq.md)| Arrays containing the files to delete. |
 
 ### Return type
 
-void (empty response body)
+[**\Swagger\Client\Model\RegistrationInfo**](../Model/RegistrationInfo.md)
 
 ### Authorization
 
@@ -174,7 +171,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
+ - **Content-Type**: application/json
  - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -229,7 +226,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -237,9 +234,9 @@ Name | Type | Description  | Notes
 # **dataProvidersIdIsAliveGet**
 > string dataProvidersIdIsAliveGet($id)
 
-Pings a Data Provider to check if it's running.
+Pings a Data Provider to check if it is running.
 
-This method allows the querying of a Data Provider specified by the ID parameter to see if it's running or not.
+This method allows the querying of a Data Provider specified by the ID parameter to see if it is running or not.
 
 ### Example
 ```php
@@ -284,13 +281,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **dataProvidersIdRegisterPost**
-> \Swagger\Client\Model\InlineResponse2005 dataProvidersIdRegisterPost($id, $basenames, $filetypes, $authenticity_token)
+> \Swagger\Client\Model\RegistrationInfo dataProvidersIdRegisterPost($id, $multi_registration_mod_req)
 
 Registers a file as a Userfile in CBRAIN.
 
@@ -313,12 +310,10 @@ $apiInstance = new Swagger\Client\Api\DataProvidersApi(
     $config
 );
 $id = 56; // int | The ID of the Data Provider to register files on.
-$basenames = array("basenames_example"); // string[] | An array containing the filenames to register.
-$filetypes = array("filetypes_example"); // string[] | An array containing the filetypes associated with the files to register
-$authenticity_token = "authenticity_token_example"; // string | The token returned by /session/new
+$multi_registration_mod_req = new \Swagger\Client\Model\MultiRegistrationModReq(); // \Swagger\Client\Model\MultiRegistrationModReq | Arrays containing the filenames and types to register.
 
 try {
-    $result = $apiInstance->dataProvidersIdRegisterPost($id, $basenames, $filetypes, $authenticity_token);
+    $result = $apiInstance->dataProvidersIdRegisterPost($id, $multi_registration_mod_req);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DataProvidersApi->dataProvidersIdRegisterPost: ', $e->getMessage(), PHP_EOL;
@@ -331,13 +326,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| The ID of the Data Provider to register files on. |
- **basenames** | [**string[]**](../Model/string.md)| An array containing the filenames to register. |
- **filetypes** | [**string[]**](../Model/string.md)| An array containing the filetypes associated with the files to register |
- **authenticity_token** | **string**| The token returned by /session/new |
+ **multi_registration_mod_req** | [**\Swagger\Client\Model\MultiRegistrationModReq**](../Model/MultiRegistrationModReq.md)| Arrays containing the filenames and types to register. |
 
 ### Return type
 
-[**\Swagger\Client\Model\InlineResponse2005**](../Model/InlineResponse2005.md)
+[**\Swagger\Client\Model\RegistrationInfo**](../Model/RegistrationInfo.md)
 
 ### Authorization
 
@@ -345,13 +338,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json
  - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **dataProvidersIdUnregisterPost**
-> dataProvidersIdUnregisterPost($id, $basenames, $authenticity_token, $as_user_id, $delete)
+> \Swagger\Client\Model\RegistrationInfo dataProvidersIdUnregisterPost($id, $multi_registration_mod_req)
 
 Unregisters files as Userfile in CBRAIN.
 
@@ -374,13 +367,11 @@ $apiInstance = new Swagger\Client\Api\DataProvidersApi(
     $config
 );
 $id = 56; // int | The ID of the Data Provider to unregister files from.
-$basenames = array("basenames_example"); // string[] | An array containing the filenames to unregister.
-$authenticity_token = "authenticity_token_example"; // string | The token returned by /session/new
-$as_user_id = 56; // int | The ID of the user to unregister files as.
-$delete = true; // bool | Specifies to delete the files once they are unregistered.
+$multi_registration_mod_req = new \Swagger\Client\Model\MultiRegistrationModReq(); // \Swagger\Client\Model\MultiRegistrationModReq | Arrays containing the filenames to unregister.
 
 try {
-    $apiInstance->dataProvidersIdUnregisterPost($id, $basenames, $authenticity_token, $as_user_id, $delete);
+    $result = $apiInstance->dataProvidersIdUnregisterPost($id, $multi_registration_mod_req);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DataProvidersApi->dataProvidersIdUnregisterPost: ', $e->getMessage(), PHP_EOL;
 }
@@ -392,14 +383,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| The ID of the Data Provider to unregister files from. |
- **basenames** | [**string[]**](../Model/string.md)| An array containing the filenames to unregister. |
- **authenticity_token** | **string**| The token returned by /session/new |
- **as_user_id** | **int**| The ID of the user to unregister files as. | [optional]
- **delete** | **bool**| Specifies to delete the files once they are unregistered. | [optional] [default to true]
+ **multi_registration_mod_req** | [**\Swagger\Client\Model\MultiRegistrationModReq**](../Model/MultiRegistrationModReq.md)| Arrays containing the filenames to unregister. |
 
 ### Return type
 
-void (empty response body)
+[**\Swagger\Client\Model\RegistrationInfo**](../Model/RegistrationInfo.md)
 
 ### Authorization
 
@@ -407,7 +395,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json
  - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)

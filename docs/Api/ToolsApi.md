@@ -1,6 +1,6 @@
 # Swagger\Client\ToolsApi
 
-All URIs are relative to *http://localhost:3001*
+All URIs are relative to *https://portal.cbrain.mcgill.ca*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -53,7 +53,7 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)

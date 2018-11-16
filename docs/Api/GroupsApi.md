@@ -1,6 +1,6 @@
 # Swagger\Client\GroupsApi
 
-All URIs are relative to *http://localhost:3001*
+All URIs are relative to *https://portal.cbrain.mcgill.ca*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -9,7 +9,6 @@ Method | HTTP request | Description
 [**groupsIdGet**](GroupsApi.md#groupsIdGet) | **GET** /groups/{id} | Get information on a Group (project).
 [**groupsIdPut**](GroupsApi.md#groupsIdPut) | **PUT** /groups/{id} | Update the properties of a Group (project).
 [**groupsPost**](GroupsApi.md#groupsPost) | **POST** /groups | Creates a new Group.
-[**groupsSwitchPost**](GroupsApi.md#groupsSwitchPost) | **POST** /groups/switch | Switches the active group.
 
 
 # **groupsGet**
@@ -58,13 +57,13 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **groupsIdDelete**
-> groupsIdDelete($id, $authenticity_token)
+> groupsIdDelete($id)
 
 Deletes a Group (project).
 
@@ -87,10 +86,9 @@ $apiInstance = new Swagger\Client\Api\GroupsApi(
     $config
 );
 $id = 56; // int | ID of the Group to delete.
-$authenticity_token = "authenticity_token_example"; // string | The token returned by /session/new
 
 try {
-    $apiInstance->groupsIdDelete($id, $authenticity_token);
+    $apiInstance->groupsIdDelete($id);
 } catch (Exception $e) {
     echo 'Exception when calling GroupsApi->groupsIdDelete: ', $e->getMessage(), PHP_EOL;
 }
@@ -102,7 +100,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| ID of the Group to delete. |
- **authenticity_token** | **string**| The token returned by /session/new |
 
 ### Return type
 
@@ -169,13 +166,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **groupsIdPut**
-> groupsIdPut($id, $group_name, $group_description, $group_site_id, $group_invisible, $group_user_ids)
+> groupsIdPut($id, $group_mod_req)
 
 Update the properties of a Group (project).
 
@@ -197,15 +194,11 @@ $apiInstance = new Swagger\Client\Api\GroupsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 56; // int | ID of the Group to be updated.
-$group_name = "NewGroupName"; // string | The new name of the Group.
-$group_description = "This project will group all of the files for a large neuroscience study to figure out how the brain works once and for all."; // string | The description of the new Group.
-$group_site_id = 56; // int | The ID of the site associated with the Group.
-$group_invisible = false; // bool | Specifies whether to make the group invisible or not. Invisible groups exist solely to control access to resources.
-$group_user_ids = array(56); // int[] | An array of IDs of Users that will be members of the new Group.
+$id = 56; // int | ID of the Group
+$group_mod_req = new \Swagger\Client\Model\GroupModReq(); // \Swagger\Client\Model\GroupModReq | An object with the group information to update
 
 try {
-    $apiInstance->groupsIdPut($id, $group_name, $group_description, $group_site_id, $group_invisible, $group_user_ids);
+    $apiInstance->groupsIdPut($id, $group_mod_req);
 } catch (Exception $e) {
     echo 'Exception when calling GroupsApi->groupsIdPut: ', $e->getMessage(), PHP_EOL;
 }
@@ -216,12 +209,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| ID of the Group to be updated. |
- **group_name** | **string**| The new name of the Group. | [optional] [default to NewGroupName]
- **group_description** | **string**| The description of the new Group. | [optional] [default to This project will group all of the files for a large neuroscience study to figure out how the brain works once and for all.]
- **group_site_id** | **int**| The ID of the site associated with the Group. | [optional]
- **group_invisible** | **bool**| Specifies whether to make the group invisible or not. Invisible groups exist solely to control access to resources. | [optional] [default to false]
- **group_user_ids** | [**int[]**](../Model/int.md)| An array of IDs of Users that will be members of the new Group. | [optional]
+ **id** | **int**| ID of the Group |
+ **group_mod_req** | [**\Swagger\Client\Model\GroupModReq**](../Model/GroupModReq.md)| An object with the group information to update |
 
 ### Return type
 
@@ -239,7 +228,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **groupsPost**
-> groupsPost($group_name, $group_description, $authenticity_token, $group_site_id, $group_invisible, $group_user_ids)
+> \Swagger\Client\Model\Group groupsPost($group_mod_req)
 
 Creates a new Group.
 
@@ -261,15 +250,11 @@ $apiInstance = new Swagger\Client\Api\GroupsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$group_name = "NewGroupName"; // string | The name of the new Group.
-$group_description = "This new Group represents a new, exciting, possibly neuroscience-related Project."; // string | The description of the new Group.
-$authenticity_token = "authenticity_token_example"; // string | The token returned by /session/new
-$group_site_id = 56; // int | The ID of the site associated with the Group.
-$group_invisible = false; // bool | Specifies whether to make the group invisible or not. Invisible groups exist solely to control access to resources.
-$group_user_ids = array(56); // int[] | An array of IDs of Users that will be members of the new Group.
+$group_mod_req = new \Swagger\Client\Model\GroupModReq(); // \Swagger\Client\Model\GroupModReq | An object describing the group to create
 
 try {
-    $apiInstance->groupsPost($group_name, $group_description, $authenticity_token, $group_site_id, $group_invisible, $group_user_ids);
+    $result = $apiInstance->groupsPost($group_mod_req);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling GroupsApi->groupsPost: ', $e->getMessage(), PHP_EOL;
 }
@@ -280,16 +265,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_name** | **string**| The name of the new Group. | [default to NewGroupName]
- **group_description** | **string**| The description of the new Group. | [default to This new Group represents a new, exciting, possibly neuroscience-related Project.]
- **authenticity_token** | **string**| The token returned by /session/new |
- **group_site_id** | **int**| The ID of the site associated with the Group. | [optional]
- **group_invisible** | **bool**| Specifies whether to make the group invisible or not. Invisible groups exist solely to control access to resources. | [optional] [default to false]
- **group_user_ids** | [**int[]**](../Model/int.md)| An array of IDs of Users that will be members of the new Group. | [optional]
+ **group_mod_req** | [**\Swagger\Client\Model\GroupModReq**](../Model/GroupModReq.md)| An object describing the group to create |
 
 ### Return type
 
-void (empty response body)
+[**\Swagger\Client\Model\Group**](../Model/Group.md)
 
 ### Authorization
 
@@ -297,63 +277,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json, application/xml
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-# **groupsSwitchPost**
-> groupsSwitchPost($id, $authenticity_token)
-
-Switches the active group.
-
-This method switches the active Group to a new one. This is useful if the analysis that the user is performing is for different projects, and involves separate Userfiles and Tasks.
-
-### Example
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-// Configure API key authorization: BrainPortalSession
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('cbrain_api_token', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cbrain_api_token', 'Bearer');
-
-$apiInstance = new Swagger\Client\Api\GroupsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$id = 1; // int | ID number of the Group to switch to
-$authenticity_token = "authenticity_token_example"; // string | The token returned by /session/new
-
-try {
-    $apiInstance->groupsSwitchPost($id, $authenticity_token);
-} catch (Exception $e) {
-    echo 'Exception when calling GroupsApi->groupsSwitchPost: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| ID number of the Group to switch to | [default to 1]
- **authenticity_token** | **string**| The token returned by /session/new |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[BrainPortalSession](../../README.md#BrainPortalSession)
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)

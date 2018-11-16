@@ -1,15 +1,14 @@
 {
-    "name": "xlecours/cbrain-php-client",
-    "description": "Swagger generated client for CBRAIN api schema v5.0.2",
+    "name": "/",
+    "description": "",
     "keywords": [
-        "CBRAIN",
         "swagger",
         "php",
         "sdk",
         "api"
     ],
-    "homepage": "https://mcin-cnim.ca/technology/cbrain/",
-    "license": "GNU General Public License v3.0",
+    "homepage": "http://swagger.io",
+    "license": "proprietary",
     "authors": [
         {
             "name": "Swagger and contributors",

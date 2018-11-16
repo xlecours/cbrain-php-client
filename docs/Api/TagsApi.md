@@ -1,6 +1,6 @@
 # Swagger\Client\TagsApi
 
-All URIs are relative to *http://localhost:3001*
+All URIs are relative to *https://portal.cbrain.mcgill.ca*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**tagsIdDelete**](TagsApi.md#tagsIdDelete) | **DELETE** /tags/{id} | Delete a tag.
 [**tagsIdGet**](TagsApi.md#tagsIdGet) | **GET** /tags/{id} | Get one tag.
 [**tagsIdPut**](TagsApi.md#tagsIdPut) | **PUT** /tags/{id} | Update a tag.
-[**tagsPost**](TagsApi.md#tagsPost) | **POST** /tags | Create a tag.
+[**tagsPost**](TagsApi.md#tagsPost) | **POST** /tags | Create a new tag.
 
 
 # **tagsGet**
@@ -57,7 +57,7 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -111,7 +111,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -166,13 +166,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **tagsIdPut**
-> tagsIdPut($id, $tag_name, $tag_group_id)
+> tagsIdPut($id, $tag_mod_req)
 
 Update a tag.
 
@@ -195,11 +195,10 @@ $apiInstance = new Swagger\Client\Api\TagsApi(
     $config
 );
 $id = 56; // int | ID of the tag to update.
-$tag_name = "NewTagName"; // string | The new name for the Tag.
-$tag_group_id = 1; // int | The Group that the Tag will be used in.
+$tag_mod_req = new \Swagger\Client\Model\TagModReq(); // \Swagger\Client\Model\TagModReq | 
 
 try {
-    $apiInstance->tagsIdPut($id, $tag_name, $tag_group_id);
+    $apiInstance->tagsIdPut($id, $tag_mod_req);
 } catch (Exception $e) {
     echo 'Exception when calling TagsApi->tagsIdPut: ', $e->getMessage(), PHP_EOL;
 }
@@ -211,8 +210,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| ID of the tag to update. |
- **tag_name** | **string**| The new name for the Tag. | [optional] [default to NewTagName]
- **tag_group_id** | **int**| The Group that the Tag will be used in. | [optional] [default to 1]
+ **tag_mod_req** | [**\Swagger\Client\Model\TagModReq**](../Model/TagModReq.md)|  |
 
 ### Return type
 
@@ -224,15 +222,15 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **tagsPost**
-> \Swagger\Client\Model\Tag tagsPost($tag_name, $tag_group_id)
+> \Swagger\Client\Model\Tag tagsPost($tag_mod_req)
 
-Create a tag.
+Create a new tag.
 
 Create a new tag in CBRAIN.
 
@@ -252,11 +250,10 @@ $apiInstance = new Swagger\Client\Api\TagsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tag_name = "NewTag"; // string | The name of the Tag. No spaces or special chars allowed.
-$tag_group_id = 1; // int | The Group that the Tag will be used in. All Users are part of Group 1
+$tag_mod_req = new \Swagger\Client\Model\TagModReq(); // \Swagger\Client\Model\TagModReq | 
 
 try {
-    $result = $apiInstance->tagsPost($tag_name, $tag_group_id);
+    $result = $apiInstance->tagsPost($tag_mod_req);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TagsApi->tagsPost: ', $e->getMessage(), PHP_EOL;
@@ -268,8 +265,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tag_name** | **string**| The name of the Tag. No spaces or special chars allowed. | [default to NewTag]
- **tag_group_id** | **int**| The Group that the Tag will be used in. All Users are part of Group 1 | [default to 1]
+ **tag_mod_req** | [**\Swagger\Client\Model\TagModReq**](../Model/TagModReq.md)|  |
 
 ### Return type
 
@@ -281,7 +277,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
